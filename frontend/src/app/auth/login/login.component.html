@@ -1,1 +1,46 @@
-<p>login works!</p>
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #loginDetails="ngForm"
+    (ngSubmit)="login(loginDetails)"
+  >
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your email"
+        ngModel
+        email
+        name="email"
+        required
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >Email is <strong>required</strong></mat-error
+      >
+      <mat-error *ngIf="emailInput.hasError('email')"
+        >Should be a valid email address</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        name="password"
+        placeholder="Your password"
+        ngModel
+        required
+        minlength="8"
+        #passwordInput="ngModel"
+      />
+      <mat-error *ngIf="passwordInput.hasError('minlength')"
+        >Should be at least 8 chars</mat-error
+      >
+      <mat-hint align="end">{{ passwordInput.value?.length }} / 8</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button class="primary" [disabled]="loginDetails.invalid">
+      Login
+    </button>
+  </form>
+</section>

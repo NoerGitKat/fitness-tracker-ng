@@ -44,10 +44,26 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Your birthday</mat-label>
-      <input matInput [matDatepicker]="picker" />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        ngModel
+        name="birthday"
+        required
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Signup</button>
+    <mat-checkbox ngModel name="agree" required
+      >Agree to Terms and Conditions</mat-checkbox
+    >
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="signupDetails.invalid"
+    >
+      Signup
+    </button>
   </form>
 </section>
