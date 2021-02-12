@@ -11,7 +11,6 @@ import { TrainingComponent } from './training/training.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
