@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  logout() {
-    console.log('logged out!');
-  }
-}
+export class AppComponent {}
