@@ -16,6 +16,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { NewExerciseComponent } from './new-exercise/new-exercise.component';
 import { PastExercisesComponent } from './past-exercises/past-exercises.component';
 import { CurrentTrainingComponent } from './current-training/current-training.component';
+import { StopTrainingDialogComponent } from './stop-training-dialog/stop-training-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CurrentTrainingComponent } from './current-training/current-training.co
     NewExerciseComponent,
     PastExercisesComponent,
     CurrentTrainingComponent,
+    StopTrainingDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,5 +42,6 @@ import { CurrentTrainingComponent } from './current-training/current-training.co
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [StopTrainingDialogComponent],
 })
 export class AppModule {}

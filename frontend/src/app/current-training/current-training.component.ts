@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeoutError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { StopTrainingDialogComponent } from '../stop-training-dialog/stop-training-dialog.component';
 
 @Component({
   selector: 'app-current-training',
@@ -10,7 +11,7 @@ export class CurrentTrainingComponent implements OnInit {
   progress = 0;
   timer!: number;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.timer = window.setInterval(() => {
@@ -23,5 +24,12 @@ export class CurrentTrainingComponent implements OnInit {
 
   onStop() {
     clearInterval(this.timer);
+    const dialogRef = this.dialog.open(StopTrainingDialogComponent, {
+      data: { progress: this.progress },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('the result is', result);
+    });
   }
 }
