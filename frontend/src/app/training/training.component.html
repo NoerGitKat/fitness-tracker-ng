@@ -8,4 +8,7 @@
     ><app-past-exercises></app-past-exercises
   ></mat-tab>
 </mat-tab-group>
-<app-current-training *ngIf="hasOngoingTraining"></app-current-training>
+<app-current-training
+  *ngIf="hasOngoingTraining"
+  (exitTraining)="toggleOngoingTraining()"
+></app-current-training>

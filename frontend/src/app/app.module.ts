@@ -17,6 +17,7 @@ import { NewExerciseComponent } from './new-exercise/new-exercise.component';
 import { PastExercisesComponent } from './past-exercises/past-exercises.component';
 import { CurrentTrainingComponent } from './current-training/current-training.component';
 import { StopTrainingDialogComponent } from './stop-training-dialog/stop-training-dialog.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { StopTrainingDialogComponent } from './stop-training-dialog/stop-trainin
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingDialogComponent],
 })
