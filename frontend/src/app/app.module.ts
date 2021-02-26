@@ -13,11 +13,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { NewExerciseComponent } from './new-exercise/new-exercise.component';
-import { PastExercisesComponent } from './past-exercises/past-exercises.component';
-import { CurrentTrainingComponent } from './current-training/current-training.component';
-import { StopTrainingDialogComponent } from './stop-training-dialog/stop-training-dialog.component';
+import { NewExerciseComponent } from './training/new-exercise/new-exercise.component';
+import { PastExercisesComponent } from './training/past-exercises/past-exercises.component';
+import { CurrentTrainingComponent } from './training/current-training/current-training.component';
+import { StopTrainingDialogComponent } from './training/stop-training-dialog/stop-training-dialog.component';
 import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { AuthService } from './auth/auth.service';
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingDialogComponent],
 })
