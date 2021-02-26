@@ -22,4 +22,7 @@
     ><mat-icon>fitness_center</mat-icon>
     <span class="nav-caption">Training</span></a
   >
+  <a *ngIf="isAuth" mat-list-item (click)="logout()"
+    ><mat-icon>logout</mat-icon> <span class="nav-caption">Logout</span></a
+  >
 </mat-nav-list>

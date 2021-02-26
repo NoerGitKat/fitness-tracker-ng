@@ -32,6 +32,11 @@ export class SidenavListComponent implements OnInit, OnDestroy {
     this.closeSidenav.emit();
   }
 
+  logout() {
+    this.authService.logout();
+    this.onCloseSidenav();
+  }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

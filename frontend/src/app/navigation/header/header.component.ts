@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
+        console.log('authStatus is....', authStatus);
         this.isAuth = authStatus;
       }
     );
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    console.log('logged out!');
+    this.authService.logout();
   }
 
   ngOnDestroy() {
