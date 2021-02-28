@@ -18,11 +18,22 @@ export class PastExercisesComponent implements OnInit, AfterViewInit {
 
   constructor(private trainingService: TrainingService) {}
 
+  // Lifecycle hook
   ngOnInit(): void {
     this.pastExercisesData.data = this.trainingService.getCompletedExercises();
   }
 
+  // Lifecycle hook
   ngAfterViewInit() {
     this.pastExercisesData.sort = this.sort;
+  }
+
+  filterTable(inputValue: HTMLInputElement) {
+    const filterValue = inputValue.value;
+    if (filterValue) {
+      this.pastExercisesData.filter = filterValue.trim().toLowerCase();
+    } else {
+      this.pastExercisesData.data = this.trainingService.getCompletedExercises();
+    }
   }
 }
