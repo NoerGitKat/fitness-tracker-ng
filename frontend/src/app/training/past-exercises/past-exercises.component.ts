@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/models/exercise.model';
@@ -15,6 +16,8 @@ export class PastExercisesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort)
   sort: MatSort = new MatSort();
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private trainingService: TrainingService) {}
 
@@ -26,6 +29,7 @@ export class PastExercisesComponent implements OnInit, AfterViewInit {
   // Lifecycle hook
   ngAfterViewInit() {
     this.pastExercisesData.sort = this.sort;
+    this.pastExercisesData.paginator = this.paginator;
   }
 
   filterTable(inputValue: HTMLInputElement) {
