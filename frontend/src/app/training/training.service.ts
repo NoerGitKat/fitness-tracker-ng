@@ -8,9 +8,9 @@ import { Injectable } from '@angular/core';
 export class TrainingService {
   public trainingChanged = new Subject<Exercise>();
   public exercisesChanged = new Subject<Exercise[]>();
+  public completedExercisesChanged = new Subject<Exercise[]>();
   private availableExercises: Exercise[] = [];
   private runningExercise!: Exercise | undefined;
-  private completedExercises: Exercise[] = [];
 
   constructor(private db: AngularFirestore) {}
 
@@ -51,7 +51,7 @@ export class TrainingService {
   }
 
   completeExercise() {
-    this.completedExercises.push({
+    this.addExercisesToDB({
       ...this.runningExercise!,
       date: new Date(),
       state: 'completed',
@@ -61,7 +61,7 @@ export class TrainingService {
   }
 
   cancelExercise(progress: number) {
-    this.completedExercises.push({
+    this.addExercisesToDB({
       ...this.runningExercise!,
       duration: this.runningExercise!.duration * (progress / 100),
       calories: this.runningExercise!.calories * (progress / 100),
@@ -76,7 +76,16 @@ export class TrainingService {
     return { ...this.runningExercise };
   }
 
-  getCompletedExercises() {
-    return [...this.completedExercises];
+  fetchCompletedExercises() {
+    return this.db
+      .collection('finishedExercises')
+      .valueChanges()
+      .subscribe((exercises: any) => {
+        this.completedExercisesChanged.next(exercises);
+      });
+  }
+
+  private addExercisesToDB(exercise: Exercise) {
+    this.db.collection('finishedExercises').add(exercise);
   }
 }
