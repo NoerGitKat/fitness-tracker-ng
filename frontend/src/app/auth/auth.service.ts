@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { UIService } from '../shared/ui.service';
 import { TrainingService } from '../training/training.service';
 import { AuthData } from './auth-data.model';
 import { User } from './user.model';
@@ -16,7 +17,8 @@ export class AuthService {
     private router: Router,
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private uiService: UIService
   ) {}
 
   initAuthListener() {
@@ -45,10 +47,12 @@ export class AuthService {
 
   async login(authData: AuthData) {
     try {
+      this.uiService.loadingStateChanged.next(true);
       const loggedInUser = await this.afAuth.signInWithEmailAndPassword(
         authData.email,
         authData.password
       );
+      this.uiService.loadingStateChanged.next(false);
       this.authenticate(true, ['/training']);
     } catch (error) {
       this.snackbar.open(error.message, undefined, {
